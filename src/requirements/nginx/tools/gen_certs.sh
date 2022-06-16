@@ -1,0 +1,1 @@
+openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=tlemma, Inc./CN=tlemma.42.fr" -addext "subjectAltName=DNS:tlemma.42.fr" -newkey rsa:2048 -keyout ./certs/nginx-selfsigned.key -out ./certs/nginx-selfsigned.crt;

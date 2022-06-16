@@ -1,0 +1,45 @@
+version: '2.6.0'
+
+services:
+  ngnix:
+    container_name: nginx
+    build: ./requirements/nginx/
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./requirements/wordpress/www:/home/www/:delegated
+    networks: 
+      - wordpress
+    depends_on:
+      - wordpress
+      - db
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - ./requirements/wordpress/www:/home/www/
+      # - ./requirements/wordpress/php8:/etc/php8/:delegated
+    networks:
+      - wordpress
+      - database
+    depends_on:
+      - db
+  db:
+    container_name: db
+    build: ./requirements/mariadb
+    ports:
+      - "3306:3306"
+    restart: always
+    # volumes:
+      # - ./requirements/mariadb/db:/var/lib/mysql:delegated
+    networks:
+      - database
+  
+networks:
+  wordpress:
+  database:
+
+
+  
+
