@@ -12,14 +12,16 @@ COPY  --chown=mysql:mysql tools/entry_point.sh /entry_point.sh
 
 COPY --chown=mysql:mysql conf/init.sql /init.sql
 
-RUN  chown -R mysql:mysql /var/lib/mysql
-RUN chmod +x /entry_point.sh
+
+RUN  chmod +x /entry_point.sh
 
 RUN mkdir /run/openrc && touch /run/openrc/softlevel
 
 RUN rc-service mariadb setup
 
 RUN cp /usr/bin/mysqld_safe /etc/init.d/mysqld_safe
+
+# RUN  chown -R mysql:mysql /var/lib/mysql
 
 EXPOSE 3306
 

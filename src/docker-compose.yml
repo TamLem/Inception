@@ -14,28 +14,33 @@ services:
     depends_on:
       - wordpress
       - db
+    env_file:
+      - .env
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     volumes:
       - ./requirements/wordpress/www:/home/www/
-      # - ./requirements/wordpress/php8:/etc/php8/:delegated
     networks:
       - wordpress
       - database
     depends_on:
       - db
+    env_file:
+      - .env
   db:
     container_name: db
     build: ./requirements/mariadb
     ports:
       - "3306:3306"
     restart: always
-    # volumes:
-      # - ./requirements/mariadb/db:/var/lib/mysql:delegated
+    volumes:
+      - ./requirements/mariadb/db:/var/lib/mysql
     networks:
       - database
-  
+    env_file:
+      - .env
+
 networks:
   wordpress:
   database:

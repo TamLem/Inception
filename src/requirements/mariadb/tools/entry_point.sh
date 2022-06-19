@@ -1,6 +1,8 @@
+chown -R mysql:mysql /var/lib/mysql
+
 /usr/bin/mysqld --user=mysql --datadir=/var/lib/mysql --verbose=0 --skip-networking=0 --bootstrap < /init.sql
 
-/usr/bin/mysqld --user=mysql --datadir=/var/lib/mysql
+exec /usr/bin/mysqld --user=mysql --datadir=/var/lib/mysql --console
 # while !(mysqladmin ping -S /tmp/mysqld.sock)
 # do
 #    sleep 3
