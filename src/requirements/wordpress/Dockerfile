@@ -9,10 +9,20 @@ RUN apk update && apk add --update-cache \
     php-mysqli \
     php-pdo_mysql \
     php-fpm \
+    php-dom \
+    php-exif \
+    php-fileinfo \
+    php-mbstring \
+    php-openssl \
+    php-xml \
+    php-zip \
+    php-ftp \
     php-opcache \
     php-curl \
+    php-cgi \
     php-session \
     php-phar  \
+    php-iconv \
     php-gd  
 RUN apk add tzdata
 RUN apk add bash
@@ -26,15 +36,12 @@ COPY --chown=www:www conf/php.ini /etc/php8/php.ini
 RUN mkdir -p /run/php/
 RUN touch /run/php/php8.0-fpm.pid
 
-# Building process
-RUN sh setup.sh
-
 # install wordpress
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN cp wp-cli.phar /usr/bin/wp
 
-# RUN wget http://wordpress.org/latest.tar.gz 
-# RUN tar -xf latest.tar.gz -C /home/www
+# Building process
+RUN chmod +x setup.sh
 
-CMD [ "/bin/bash", "-c", "php-fpm8 -F -R" ]
+CMD [ "/bin/bash", "setup.sh" ]

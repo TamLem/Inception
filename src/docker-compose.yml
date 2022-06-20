@@ -8,7 +8,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./requirements/wordpress/www:/home/www/:delegated
+      - www:/home/www/
     networks: 
       - wordpress
     depends_on:
@@ -20,7 +20,7 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     volumes:
-      - ./requirements/wordpress/www:/home/www/
+      - www:/home/www/
     networks:
       - wordpress
       - database
@@ -35,11 +35,16 @@ services:
       - "3306:3306"
     restart: always
     volumes:
-      - ./requirements/mariadb/db:/var/lib/mysql
+      - db:/var/lib/mysql
+    user: mysql
     networks:
       - database
     env_file:
       - .env
+
+volumes:
+  db:
+  www:
 
 networks:
   wordpress:
