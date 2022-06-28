@@ -13,5 +13,3 @@ COPY tools/config.sh config.sh
 # RUN sh config.sh
 
 ENTRYPOINT [ "sh", "config.sh" ]
-
-
