@@ -11,7 +11,8 @@ if [ ! -f "/home/www/wp-config.php" ]; then
     # wp db create
     wp core install --url=$SITE_NAME --title=$SITE_TITLE --admin_user=$WP_ADMIN \
     --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --skip-email
-    wp theme install twentytwentyone --activate
+    # wp theme install twentytwentyone
+    # wp theme activate twentytwentyone
 
     # setup redis cache
     sed -i "40i define( 'WP_REDIS_HOST', '$REDIS_HOST' );"      wp-config.php
