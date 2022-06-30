@@ -14,6 +14,4 @@ COPY --chown=www:www ./tools/certs/nginx-selfsigned.crt /etc/ssl/certs/nginx-sel
 
 COPY --chown=www:www ./tools/certs/nginx-selfsigned.key /etc/ssl/private/nginx-selfsigned.key
 
-COPY --chown=www:www tools/bonus /home/www/mysite
-
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
