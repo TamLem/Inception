@@ -1,4 +1,4 @@
-# Inception - Implemntation of a microservice architecture for web applications
+# Inception - Implementation of microservice architecture for a web application
 
 The projects is composed of docker containers created from scratch and volumes mounted to the containers.
 
